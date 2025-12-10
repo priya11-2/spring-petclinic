@@ -40,8 +40,8 @@
       <url>https://www.apache.org/licenses/LICENSE-2.0</url>
     </license>
   </licenses>
-  <packaging>jar</packaging>
-<build>
+  <packaging>war</packaging>
+  <build>
     <plugins>
 
         <!-- WAR Plugin (required for Tomcat deployment) -->
@@ -84,7 +84,7 @@
         </plugin>
 
     </plugins>
-</build>
+  </build>
   <dependencies>
     <!-- Spring and Spring Boot dependencies -->
     <dependency>
