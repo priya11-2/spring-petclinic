@@ -40,7 +40,51 @@
       <url>https://www.apache.org/licenses/LICENSE-2.0</url>
     </license>
   </licenses>
+  <packaging>jar</packaging>
+<build>
+    <plugins>
 
+        <!-- WAR Plugin (required for Tomcat deployment) -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.4.0</version>
+            <configuration>
+                <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+        </plugin>
+
+        <!-- Dependency unpack plugin (optional) -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>3.3.0</version>
+            <executions>
+                <execution>
+                    <id>unpack</id>
+                    <phase>generate-resources</phase>
+                    <goals>
+                        <goal>unpack</goal>
+                    </goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <!-- example: -->
+                                <groupId>javax.servlet</groupId>
+                                <artifactId>javax.servlet-api</artifactId>
+                                <version>4.0.1</version>
+                                <type>jar</type>
+                                <overWrite>true</overWrite>
+                                <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+    </plugins>
+</build>
   <dependencies>
     <!-- Spring and Spring Boot dependencies -->
     <dependency>
