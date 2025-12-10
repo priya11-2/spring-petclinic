@@ -26,11 +26,14 @@ import org.springframework.context.annotation.ImportRuntimeHints;
  * @author Dave Syer
  */
 @SpringBootApplication
-@ImportRuntimeHints(PetClinicRuntimeHints.class)
-public class PetClinicApplication {
+public class PetClinicApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PetClinicApplication.class, args);
-	}
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(PetClinicApplication.class);
+    }
 
+    public static void main(String[] args) {
+        SpringApplication.run(PetClinicApplication.class, args);
+    }
 }
